@@ -3,18 +3,26 @@
 <head>
 	<title>Circle</title>
 	<script type="text/javascript" src="paper-full.js"></script>
+	<style type="text/css">
+		canvas {
+			background-color: black;
+		}
+	</style>
 	<script type="text/paperscript" canvas="myCanvas">
 		var circles = [];
+		colors = ["red", "orange", "yellow", "green", "blue", "purple", "gray", "violet", "indigo"];
 		function onKeyDown(event) {
-			var maxView = new Point(view.size.width, view.size.height);
+			var maxPoint = new Point(view.size.width, view.size.height);
 			var randPoint = Point.random();
-			var point = maxView * randPoint;
-			var newCircle = new Path.circle(point), 10)
-			newCircle.fillColor = 'yellow';
+			var point = maxPoint * randPoint;
+			var randColor = Math.round(Math.random() * 10 - 1);
+			console.log(randColor)
+			var newCircle = new Path.Circle(point, 500)
+			newCircle.fillColor = colors[randColor];
 			circles.push(newCircle);
-		}
+		 }
 		function onFrame(event) {
-			for (var i = 0, i < circles.length, i++) {
+			for (var i = 0; i < circles.length; i++) {
 				circles[i].fillColor.hue += 1;
 				circles[i].scale(.9);
 			}
