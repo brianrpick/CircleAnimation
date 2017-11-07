@@ -10,15 +10,12 @@
 	</style>
 	<script type="text/paperscript" canvas="myCanvas">
 		var circles = [];
-		colors = ["red", "orange", "yellow", "green", "blue", "purple", "gray", "violet", "indigo"];
 		function onKeyDown(event) {
 			var maxPoint = new Point(view.size.width, view.size.height);
 			var randPoint = Point.random();
 			var point = maxPoint * randPoint;
-			var randColor = Math.round(Math.random() * 10 - 1);
-			console.log(randColor)
 			var newCircle = new Path.Circle(point, 500)
-			newCircle.fillColor = colors[randColor];
+			newCircle.fillColor = generateRandomColor();
 			circles.push(newCircle);
 		 }
 		function onFrame(event) {
@@ -27,6 +24,13 @@
 				circles[i].scale(.9);
 			}
 		}
+
+		function generateRandomColor() {
+		  var r = Math.floor(Math.random() * 256);
+		  var b = Math.floor(Math.random() * 256);
+		  var g = Math.floor(Math.random() * 256);
+		   return "rgb(" + r + ", " + b + ", " + g + ")";
+		 }
 	</script>
 </head>
 <body>
