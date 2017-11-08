@@ -3,11 +3,7 @@
 <head>
 	<title>Circle</title>
 	<script type="text/javascript" src="paper-full.js"></script>
-	<style type="text/css">
-		html {
-			background-color: black;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="circles.css">	
 	<script type="text/paperscript" canvas="myCanvas">
 		var circles = [];
 		function onKeyDown(event) {
@@ -22,6 +18,11 @@
 			for (var i = 0; i < circles.length; i++) {
 				circles[i].fillColor.hue += 1;
 				circles[i].scale(.9);
+				if(circles[i].area < 1){
+      		circles[i].remove();
+      		circles.splice(i, 1);
+      		i--;
+    		}
 			}
 		}
 
